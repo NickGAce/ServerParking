@@ -13,7 +13,7 @@ router = APIRouter(
 )
 
 
-@router.get("/users", response_model=List[UserResponse])  # Заменил User на UserResponse
+@router.get("/users", response_model=List[UserResponse])
 async def get_all_users(
         db: Session = Depends(get_db),
         current_user: UserResponse = Depends(admin_required)
@@ -23,7 +23,7 @@ async def get_all_users(
     return repo.get_all_users()
 
 
-@router.get("/users/{user_id}", response_model=UserResponse)  # Заменил User на UserResponse
+@router.get("/users/{user_id}", response_model=UserResponse)
 async def get_user_details(
         user_id: int,
         db: Session = Depends(get_db),
@@ -40,7 +40,7 @@ async def get_user_details(
     return user
 
 
-@router.patch("/users/{user_id}/role", response_model=UserResponse)  # Заменил User на UserResponse
+@router.patch("/users/{user_id}/role", response_model=UserResponse)
 async def update_user_role(
         user_id: int,
         role_data: UserUpdateRole,
@@ -66,7 +66,7 @@ async def update_user_role(
     return user
 
 
-@router.get("/users/search/{query}", response_model=List[UserResponse])  # Заменил User на UserResponse
+@router.get("/users/search/{query}", response_model=List[UserResponse])
 async def search_users(
         query: str,
         db: Session = Depends(get_db),

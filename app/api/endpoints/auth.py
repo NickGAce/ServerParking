@@ -2,12 +2,11 @@ from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
 from datetime import timedelta
 from fastapi.security import OAuth2PasswordBearer, OAuth2PasswordRequestForm
-from app.core.dependencies import admin_required, require_manager
+
 from app.db.session import get_db
 from app.db.repositories.user import get_user_by_username, check_admin_exists, create_user, authenticate_user
 from app.schemas.user import UserCreate, UserResponse
-from app.core.security import create_access_token, get_current_user
-from app.db.models import User
+from app.core.security import create_access_token
 
 
 oauth2_scheme = OAuth2PasswordBearer(
